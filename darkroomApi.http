@@ -1,0 +1,6 @@
+@darkroomApi_HostAddress = http://localhost:5034
+
+GET {{darkroomApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
