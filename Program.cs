@@ -104,7 +104,7 @@ static SkiaSharp.SKBitmap ResizeBitmap(SkiaSharp.SKBitmap bitmap, int width, int
             using (var canvas = new SkiaSharp.SKCanvas(cropped))
             {
                 canvas.Clear(SkiaSharp.SKColors.Transparent);
-                canvas.DrawBitmap(scaled, sourceRect, destRect);
+                canvas.DrawBitmap(scaled, sourceRect, destRect, SkiaSharp.SKSamplingOptions.Default);
             }
 
             return cropped;
