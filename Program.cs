@@ -195,28 +195,8 @@ app.MapPost("/add-background", async ([FromForm] AddBackgroundRequest request) =
 })
 .DisableAntiforgery();
 
-// Background removal needs a subject-segmentation model (e.g. U2Net/MODNet/rembg or a
-// hosted API like remove.bg) — that's outside what SkiaSharp's raster ops can do well,
-// since it requires actual ML inference rather than pixel math. This endpoint is a
-// placeholder so the route exists; wire it up to a segmentation model or external API
-// before enabling it on the frontend.
-app.MapPost("/remove-background", () =>
-{
-    return Results.Problem(
-        title: "Not implemented",
-        detail: "Background removal requires an ML segmentation model or external API (e.g. rembg, remove.bg) rather than a SkiaSharp pixel operation. Wire this endpoint up to one of those before enabling it.",
-        statusCode: StatusCodes.Status501NotImplemented);
-})
-.DisableAntiforgery();
-
 app.Run();
 
-// Resizes a bitmap into exactly the requested width/height box according to mode:
-//   "fit"   - scale to fit entirely inside the box, aspect ratio preserved
-//             (output may be smaller than the box on one axis; no crop, no stretch)
-//   "crop"  - scale to fill the box, aspect ratio preserved, then crop the
-//             overflow from the center so the output is exactly width x height
-//   "exact" - stretch/squash to exactly width x height, ignoring aspect ratio
 static SkiaSharp.SKBitmap ResizeBitmap(SkiaSharp.SKBitmap bitmap, int width, int height, string mode)
 {
     width = Math.Max(1, width);
