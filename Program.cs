@@ -8,12 +8,12 @@ builder.Services.AddOpenApi();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowReactApp", policy =>
-         policy.WithOrigins(
-                "http://localhost:5173",  // local dev
-                "https://darkroom-livid.vercel.app"
-              )
-              .AllowAnyHeader()
-              .AllowAnyMethod());
+            policy.WithOrigins(
+                    "http://localhost:5173",  // local dev
+                    "https://darkroom-livid.vercel.app"
+                )
+                .AllowAnyHeader()
+                .AllowAnyMethod());
 });
 
 var app = builder.Build();
